@@ -25,7 +25,6 @@ int main()
 	while (false)
 	{
 		JobScheduler scheduler;
-		int longestPath;
 		bool going = getInput(scheduler);
 		while (!going)
 		{

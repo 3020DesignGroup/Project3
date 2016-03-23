@@ -10,15 +10,18 @@
 #include"DisjointSet.h"
 #include<vector>
 
+#ifndef JOB_SCHEDULER_H
+#define JOB_SCHEDULER_H
+
 class JobScheduler
 {
 private:
-	vector<Job> Jobs;
-	vector<DisjointSet<Job>> jobSets;
+    vector<Job> Jobs;
+    DisjointSet<Job> jobSet;
 public:
     void addJob(Job job);
-	void compute();
-	string toString();
+    void compute();
+    string toString();
 };
 
 
@@ -34,3 +37,6 @@ string JobScheduler::toString()
 {
     return string();
 }
+
+#endif // !JOB_SCHEDULER_H
+
