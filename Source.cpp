@@ -7,6 +7,7 @@
 #include"JobScheduler.h"
 #include"RandomUtilities.h"
 #include"winTimer.h"
+#include"DisjointSet.h"
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -19,10 +20,9 @@ void randBuildScheduler(JobScheduler& scheduler, int size);
 
 void fileBuildScheduler(JobScheduler& scheduler, ifstream& infile);
 
-
 int main()
 {
-	while (true)
+	while (false)
 	{
 		JobScheduler scheduler;
 		int longestPath;
@@ -34,12 +34,13 @@ int main()
 
 		Timer timer;
 		timer.start();
-		longestPath = scheduler.compute();
+		scheduler.compute();
 		timer.stop();
 
 		cout << "\n the best order for jobs is : " << scheduler.toString() << "\nand was found in " << timer() << " seconds" << endl << endl;
 
 	}
+
 	return 0;
 }
 
@@ -55,3 +56,4 @@ void randBuildScheduler(JobScheduler & scheduler, int size)
 void fileBuildScheduler(JobScheduler & scheduler, ifstream & infile)
 {
 }
+

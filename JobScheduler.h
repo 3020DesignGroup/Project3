@@ -14,8 +14,23 @@ class JobScheduler
 {
 private:
 	vector<Job> Jobs;
-	vector<DisjointSet> jobSets;
+	vector<DisjointSet<Job>> jobSets;
 public:
+    void addJob(Job job);
 	void compute();
 	string toString();
 };
+
+
+void JobScheduler::addJob(Job job)
+{
+}
+
+void JobScheduler::compute()
+{
+}
+
+string JobScheduler::toString()
+{
+    return string();
+}

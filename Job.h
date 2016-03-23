@@ -21,4 +21,21 @@ public:
 	int getValue() const;
 };
 
+Job::Job()
+{
+}
+
+Job::Job(double value, int dueDate)
+{
+}
+
+int Job::getDueDate() const
+{
+    return 0;
+}
+
+int Job::getValue() const
+{
+    return 0;
+}
 #endif
