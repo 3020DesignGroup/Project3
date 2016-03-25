@@ -45,7 +45,51 @@ int main()
 
 bool getInput(JobScheduler & scheduler)
 {
-	return false;
+	int size;
+	string filename;
+	ifstream infile;
+	string option;
+	randomizeSeed();
+
+	//prompt for random or file entry.
+	cout << "Enter r for random creation of Jobs. Enter f for input via external file: ";
+	cin >> option;
+	if (option == "r")
+	{
+		//prompt for size
+		cout << "please enter desired size: ";
+		cin >> size;
+
+		randBuildScheduler(scheduler, size);
+		return true;
+	}
+
+	// fill the graph by file input
+	else if (option == "f")
+	{
+		//prompt for file
+		cout << "enter filename: ";
+		cin >> filename;
+
+		//open file
+		infile.open(filename);
+		if (!(infile.is_open()))
+		{
+			cerr << "File not found!" << endl << endl;
+			return false;
+		}
+
+		fileBuildScheduler(scheduler, infile);
+		return true;
+	}
+	else
+	{
+		cerr << "unrecognized input. Please enter \"r\" or \"f\"" << endl << endl;
+		return false;
+	}
+	return true;
+}
+
 }
 
 void randBuildScheduler(JobScheduler & scheduler, int size)
