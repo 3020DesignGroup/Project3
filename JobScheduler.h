@@ -16,17 +16,20 @@
 class JobScheduler
 {
 private:
-    vector<Job> Jobs;
-    DisjointSet<Job> jobSet;
+    vector<Job> _jobs;
+    DisjointSet<Job> _jobSet;
+    vector<Job> _orderedJobs;
 public:
     void addJob(Job job);
     void compute();
     string toString();
+    vector<Job> getJobs() const;
 };
 
 
 void JobScheduler::addJob(Job job)
 {
+    _jobs.push_back(job);
 }
 
 void JobScheduler::compute()
@@ -36,6 +39,10 @@ void JobScheduler::compute()
 string JobScheduler::toString()
 {
     return string();
+}
+vector<Job> JobScheduler::getJobs() const
+{
+    return _jobs;
 }
 
 #endif // !JOB_SCHEDULER_H

@@ -19,32 +19,35 @@ private:
 	int _dueDate;
 public:
 	Job();
-	Job(double value, int dueDate, string name);
+	Job(string name, double value, int dueDate); 
     string getName() const;
 	int getDueDate() const;
 	int getValue() const;
 };
 
-Job::Job()
+Job::Job() : _name(""), _value(0), _dueDate(1)
 {
 }
 
-Job::Job(double value, int dueDate, string name)
+Job::Job(string name, double value, int dueDate) : _name(""), _value(0), _dueDate(1)
 {
+    _name = name;
+    if (value >= 0) _value = value;
+    if (dueDate > 0) _dueDate = dueDate;
 }
 
 string Job::getName() const
 {
-    return string();
+    return _name;
 }
 
 int Job::getDueDate() const
 {
-    return 0;
+    return _dueDate;
 }
 
 int Job::getValue() const
 {
-    return 0;
+    return _value;
 }
 #endif
