@@ -14,13 +14,13 @@ using namespace std;
 class Job
 {
 private:
-    string _name;
+	string _name;
 	double _value;
 	int _dueDate;
 public:
 	Job();
-	Job(string name, double value, int dueDate); 
-    string getName() const;
+	Job(string name, double value, int dueDate);
+	string getName() const;
 	int getDueDate() const;
 	int getValue() const;
 };
@@ -31,23 +31,23 @@ Job::Job() : _name(""), _value(0), _dueDate(1)
 
 Job::Job(string name, double value, int dueDate) : _name(""), _value(0), _dueDate(1)
 {
-    _name = name;
-    if (value >= 0) _value = value;
-    if (dueDate > 0) _dueDate = dueDate;
+	_name = name;
+	if (value >= 0) _value = value;
+	if (dueDate > 0) _dueDate = dueDate;
 }
 
 string Job::getName() const
 {
-    return _name;
+	return _name;
 }
 
 int Job::getDueDate() const
 {
-    return _dueDate;
+	return _dueDate;
 }
 
 int Job::getValue() const
 {
-    return _value;
+	return _value;
 }
 #endif
