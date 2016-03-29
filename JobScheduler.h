@@ -55,7 +55,10 @@ void JobScheduler::compute()
 	{
 		findPlace = true;
 		due = job.getDueDate() - 1;
-
+		if (due > _jobs.size())
+		{
+			due = _jobs.size();
+		}
 		while (findPlace)
 		{
 			if (!_orderedByName[due].empty())
@@ -98,6 +101,10 @@ void JobScheduler::computeSlow()
 				maxdue = due;
 				place = j;
 			}
+		}
+		if (place > _jobs.size())
+		{
+			place = _jobs.size();
 		}
 		while (findPlace)
 		{
