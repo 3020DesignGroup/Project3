@@ -23,6 +23,7 @@ public:
 	string getName() const;
 	int getDueDate() const;
 	int getValue() const;
+    bool empty() const;
 };
 
 Job::Job() : _name(""), _value(0), _dueDate(1)
@@ -49,5 +50,11 @@ int Job::getDueDate() const
 int Job::getValue() const
 {
 	return _value;
+}
+bool Job::empty() const
+{
+    if (_name == "")
+        return true;
+    return false;
 }
 #endif

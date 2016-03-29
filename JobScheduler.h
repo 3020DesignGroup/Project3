@@ -26,7 +26,7 @@ public:
 	void addJob(Job job);
 	void compute();
 	void computeSlow();
-	string toString();
+    void print();
 	vector<Job> getJobs() const;
 };
 
@@ -127,14 +127,21 @@ void JobScheduler::computeSlow()
 	}
 }
 
-string JobScheduler::toString()
-{
-	return string();
-}
+
 vector<Job> JobScheduler::getJobs() const
 {
 	//return _jobs;
-	return _orderedJobs;
+    return _orderedJobs;
+
+}
+
+void JobScheduler::print()
+{
+    cout << "Job Name:" << endl;
+    for (int i = 0; i < _orderedByName.size(); i++)
+    {
+        cout << _orderedByName[i] << endl;
+    }
 }
 
 #endif // !JOB_SCHEDULER_H

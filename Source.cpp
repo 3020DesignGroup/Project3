@@ -29,24 +29,39 @@ string intToString(int intConvert);
 
 int main()
 {
+    string input;
+    Timer timer;
+    JobScheduler scheduler;
+	bool going = getInput(scheduler);
+	while (!going)
+	{
+		going = getInput(scheduler);
+	}
 
-		JobScheduler scheduler;
-		bool going = getInput(scheduler);
-		while (!going)
-		{
-			going = getInput(scheduler);
-		}
+    cout << "Do you want slow or fast compute?(s or f):";
+    cin >> input;
+    if (input == "s")
+    {
+        Timer timer;
+        timer.start();
+        scheduler.computeSlow();
+        timer.stop();
 
-		Timer timer;
-		timer.start();
-		scheduler.compute();
-		timer.stop();
+    }
+    else if (input == "f")
+    {
+            
+        timer.start();
+        scheduler.compute();
+        timer.stop();
+    }
 
-		cout << "\n the best order for jobs is : " << scheduler.toString() << "\nand was found in " << timer() << " seconds" << endl << endl;
 
-        //debug function
-        printJobs(scheduler);
-
+       
+    cout << "\n the best order for jobs is : " << endl;
+   // printJobs(scheduler);
+    cout << "\nand was found in " << timer() << " seconds" << endl << endl;
+ 
 	return 0;
 }
 
@@ -77,7 +92,7 @@ bool getInput(JobScheduler & scheduler)
         cin >> maxVal;
         cout << "enter min Job Due Date: ";
         cin >> minDate;
-        cout << "enter max Job Due Date";
+        cout << "enter max Job Due Date: ";
         cin >> maxDate;
 
 		randBuildScheduler(scheduler, size, minVal, maxVal, minDate, maxDate);
@@ -165,8 +180,10 @@ void printJobs(JobScheduler& scheduler)
     cout << "Job Name\tValue\t\tDueDate" << endl;
     for (int i = 0; i < jobs.size(); i++)
     {
+        if(!jobs[i].empty())
         cout << jobs[i].getName() << "\t\t" << jobs[i].getValue()  << "\t\t" << jobs[i].getDueDate() << endl;
     }
+
 }
 
 string intToString(int intConvert)
