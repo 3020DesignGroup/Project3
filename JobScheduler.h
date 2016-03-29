@@ -10,6 +10,7 @@
 #include"DisjointSet.h"
 #include<vector>
 #include<algorithm>
+#include<iostream>
 
 #ifndef JOB_SCHEDULER_H
 #define JOB_SCHEDULER_H
@@ -55,10 +56,10 @@ void JobScheduler::compute()
 	{
 		findPlace = true;
 		due = job.getDueDate() - 1;
-		if (due > _jobs.size())
+		/*if (due > _jobs.size())
 		{
 			due = _jobs.size();
-		}
+		}*/
 		while (findPlace)
 		{
 			if (!_orderedByName[due].empty())
@@ -85,40 +86,39 @@ void JobScheduler::compute()
 void JobScheduler::computeSlow()
 {
 	Job job("0",0,0);
-	int due = 0;
+	int value = 0;
 	int place = 0;
-	int maxdue = 0;
-	string max;
+	int maxvalue = 0;
+	int due = 0;
 	bool findPlace = true;
 	_orderedJobs.resize(_jobs.size());
-	for (int i = 0; i >= _jobs.size(); i++)
+	for (int i = 0; i <= _jobs.size(); i++)
 	{
-		for (int j = 0; j > _jobs.size(); j++)
+		for (int j = 0; j < _jobs.size(); j++)
 		{
-			due = job.getDueDate();
-			if (maxdue < due)
+			value = job.getValue();
+			if (maxvalue < value)
 			{
-				maxdue = due;
+				maxvalue = value;
 				place = j;
 			}
 		}
-		if (place > _jobs.size())
-		{
-			place = _jobs.size();
-		}
+		due = _jobs[place].getDueDate();
+		findPlace = true;
 		while (findPlace)
 		{
-			if (_orderedJobs[place].getValue() != 0)
+			if (_orderedJobs[due].getValue() != 0)
 			{
-				if (place < 0)
+				if (due < 0)
 				{
 					//the job is not going to be done
 					findPlace = false;
 				}
+				due--;
 			}
 			else
 			{
-				_orderedJobs[place] = _jobs[place];
+				_orderedJobs[due-1] = _jobs[place];
 				_jobs[place] = job;
 				findPlace = false;
 			}
