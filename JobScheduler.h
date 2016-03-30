@@ -26,7 +26,7 @@ public:
 	void addJob(Job job);
 	void compute();
 	void computeSlow();
-    void print();
+	void print();
 	vector<Job> getJobs() const;
 };
 
@@ -49,7 +49,7 @@ void JobScheduler::compute()
 	bool findPlace = true;
 	_orderedJobs.resize(_jobs.size());
 	_orderedByName.resize(_jobs.size());
-	
+
 	std::sort(_jobs.begin(), _jobs.end(), byValues);
 
 	for each(job in _jobs)
@@ -58,7 +58,7 @@ void JobScheduler::compute()
 		due = job.getDueDate() - 1;
 		/*if (due > _jobs.size())
 		{
-			due = _jobs.size();
+		due = _jobs.size();
 		}*/
 		while (findPlace)
 		{
@@ -85,40 +85,41 @@ void JobScheduler::compute()
 // this may or may not be working. it is untested
 void JobScheduler::computeSlow()
 {
-	Job job("0",0,0);
+	Job job("0", 0, 0);
 	int value = 0;
 	int place = 0;
 	int maxvalue = 0;
 	int due = 0;
 	bool findPlace = true;
 	_orderedJobs.resize(_jobs.size());
-	for (int i = 0; i <= _jobs.size(); i++)
+	for (int i = 0; i < _jobs.size(); i++)
 	{
+		maxvalue = 0;
 		for (int j = 0; j < _jobs.size(); j++)
 		{
-			value = job.getValue();
+			value = _jobs[j].getValue();
 			if (maxvalue < value)
 			{
 				maxvalue = value;
 				place = j;
 			}
 		}
-		due = _jobs[place].getDueDate();
+		due = _jobs[place].getDueDate()-1;
 		findPlace = true;
 		while (findPlace)
 		{
 			if (_orderedJobs[due].getValue() != 0)
 			{
+				due--;
 				if (due < 0)
 				{
 					//the job is not going to be done
 					findPlace = false;
 				}
-				due--;
 			}
 			else
 			{
-				_orderedJobs[due-1] = _jobs[place];
+				_orderedJobs[due] = _jobs[place];
 				_jobs[place] = job;
 				findPlace = false;
 			}
@@ -131,18 +132,17 @@ void JobScheduler::computeSlow()
 vector<Job> JobScheduler::getJobs() const
 {
 	//return _jobs;
-    return _orderedJobs;
+	return _orderedJobs;
 
 }
 
 void JobScheduler::print()
 {
-    cout << "Job Name:" << endl;
-    for (int i = 0; i < _orderedByName.size(); i++)
-    {
-        cout << _orderedByName[i] << endl;
-    }
+	cout << "Job Name:" << endl;
+	for (int i = 0; i < _orderedByName.size(); i++)
+	{
+		cout << _orderedByName[i] << endl;
+	}
 }
 
 #endif // !JOB_SCHEDULER_H
-
